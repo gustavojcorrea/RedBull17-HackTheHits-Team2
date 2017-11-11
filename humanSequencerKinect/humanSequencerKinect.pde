@@ -54,6 +54,8 @@ void draw() {
   text("threshold: " + t + "    " +  "framerate: " + int(frameRate) + "    " + 
     "UP increase threshold, DOWN decrease threshold" + "   " + "width: " + kinect.width + 
     "   " + "height: " + kinect.height, 10, 500);
+    
+    
 }
 void drawGrid(){
   //columns
@@ -65,17 +67,4 @@ void drawGrid(){
   //rows
   line(0,kinect.height/3,kinect.width,kinect.height/3);
   line(0,kinect.height*(.66),kinect.width,kinect.height*(.66));
-}
-// Adjust the threshold with key presses
-void keyPressed() {
-  int t = tracker.getThreshold();
-  if (key == CODED) {
-    if (keyCode == UP) {
-      t+=5;
-      tracker.setThreshold(t);
-    } else if (keyCode == DOWN) {
-      t-=5;
-      tracker.setThreshold(t);
-    }
-  }
 }
