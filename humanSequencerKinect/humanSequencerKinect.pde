@@ -52,7 +52,8 @@ void draw() {
   tracker.setThreshold(t);
   fill(0);
   text("threshold: " + t + "    " +  "framerate: " + int(frameRate) + "    " + 
-    "UP increase threshold, DOWN decrease threshold", 10, 500);
+    "UP increase threshold, DOWN decrease threshold" + "   " + "width: " + kinect.width + 
+    "   " + "height: " + kinect.height, 10, 500);
 }
 void drawGrid(){
   //columns

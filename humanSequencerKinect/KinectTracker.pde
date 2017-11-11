@@ -21,6 +21,17 @@ class KinectTracker {
   
   // What we'll show the user
   PImage display;
+  
+  int boxSize = 20;
+  
+  float[] tileCenterX = {kinect.width*.125,kinect.width*.375,kinect.width*.625, kinect.width*.875,
+                            kinect.width*.125,kinect.width*.375,kinect.width*.625, kinect.width*.875,
+                            kinect.width*.125,kinect.width*.375,kinect.width*.625, kinect.width*.875};
+                            
+  float[] tileCenterY = {kinect.height*.15,kinect.height*.15,kinect.height*.15,kinect.height*.15,
+                         kinect.height*.50,kinect.height*.50,kinect.height*.50,kinect.height*.50,
+                         kinect.height*.83,kinect.height*.83,kinect.height*.83,kinect.height*.83};
+    
    
   KinectTracker() {
     // This is an awkard use of a global variable here
@@ -107,6 +118,7 @@ class KinectTracker {
     //}
     
     
+    
     for (int x = 0; x < kinect.width; x++) {
       for (int y = 0; y < kinect.height; y++) {
 
@@ -118,8 +130,18 @@ class KinectTracker {
           // A red color instead
           display.pixels[pix] = color(150, 50, 50);
           //checkRegion(x,y);
-          displayBox(x,y);
+          //checkBoundary(x,y);
           
+          
+          for(int i = 0; i < 12; i++){
+            if ((x > tileCenterX[i]-boxSize) && (x < tileCenterX[i]+boxSize) && 
+          (y > tileCenterY[i]-boxSize) && (y < tileCenterY[i]+boxSize)) {
+            rectMode(CENTER);
+            fill(255);
+            rect(tileCenterX[i], tileCenterY[i],50,50);
+            }
+          }
+    
         } 
         else {
           display.pixels[pix] = img.pixels[offset];
@@ -135,32 +157,43 @@ class KinectTracker {
     image(display, 0, 0);
   }
 
-  void displayBox(int x, int y){
-    //(1,1)
-    if((x > kinect.width*.18) && (x < kinect.width*.22) && (y < kinect.height*.66)){
-      rectMode(CENTER);
-      fill(255);
-      rect(kinect.width*.125, kinect.height*.15,50,50);
-    }
-    //(2,1)
-    if((x > kinect.width*.25) && (x < kinect.width*.5) && (y < kinect.height*.66)){
-      rectMode(CENTER);
-      fill(255);
-      rect(kinect.width*.375, kinect.height*.15,50,50);
-    }
-    //(3,1)
-    if((x > kinect.width*.5) && (x < kinect.width*.75) && (y < kinect.height*.66)){
-      rectMode(CENTER);
-      fill(255);
-      rect(kinect.width*.625, kinect.height*.15,50,50);
+  void checkBoundary(int x, int y){
+    
+    for(int i = 0; i < 12; i++){
+      
+      if (x > tileCenterX[0]-boxSize && x < tileCenterX[0]+boxSize && 
+        y > tileCenterY[0]-boxSize && y < tileCenterY[0]+boxSize) {
+          rectMode(CENTER);
+          fill(255);
+          rect(tileCenterX[i], tileCenterY[i],50,50);
+        }
     }
     
-    //(4,1)
-    if((x > kinect.width*.75) && (x < kinect.width) && (y < kinect.height*.66)){
-      rectMode(CENTER);
-      fill(255);
-      rect(kinect.width*.875, kinect.height*.15,50,50);
-    }
+    //(1,1)
+    //if((x > kinect.width*.18) && (x < kinect.width*.22) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.125, kinect.height*.15,50,50);
+    //}
+    ////(2,1)
+    //if((x > kinect.width*.25) && (x < kinect.width*.5) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.375, kinect.height*.15,50,50);
+    //}
+    ////(3,1)
+    //if((x > kinect.width*.5) && (x < kinect.width*.75) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.625, kinect.height*.15,50,50);
+    //}
+    
+    ////(4,1)
+    //if((x > kinect.width*.75) && (x < kinect.width) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.875, kinect.height*.15,50,50);
+    //}
     
     
     //(1,2)
