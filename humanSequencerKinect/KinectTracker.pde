@@ -8,7 +8,7 @@
 class KinectTracker {
 
   // Depth threshold
-  int threshold = 745;
+  int threshold = 990;
 
   // Raw location
   PVector loc;
@@ -117,6 +117,11 @@ class KinectTracker {
     // Going to rewrite the depth image to show which pixels are in threshold
     // A lot of this is redundant, but this is just for demonstration purposes
     display.loadPixels();
+     for (int i = 0; i < 12; i++) {
+          
+              tileStatus[i] = 0;
+              
+        } 
 
     for (int x = 0; x < kinect.width; x++) {
       for (int y = 0; y < kinect.height; y++) {
@@ -144,8 +149,6 @@ class KinectTracker {
               //updateOutputString();
               updateGlobalOutput();
               //print(i);
-            } else {
-              tileStatus[i] = 0;
             }
           }
         } else {
@@ -165,54 +168,65 @@ class KinectTracker {
   void updateGlobalOutput(){
     //char[] tilesPreOutput = new char[8];
     
-    int ch1 = getActiveCh(1);
-    int ch2 = getActiveCh(2);
-    int ch3 = getActiveCh(3);
-    int ch4 = getActiveCh(4);
+    //int ch1 = getActiveCh(1);
+    //int ch2 = getActiveCh(2);
+    //int ch3 = getActiveCh(3);
+    //int ch4 = getActiveCh(4);
     
-    //println("active chs: " + ch1 + " " + ch2 + " " + ch3 + " " + ch4);
+    ////println("active chs: " + ch1 + " " + ch2 + " " + ch3 + " " + ch4);
     
-    char ch1x = getXval(ch1);
-    char ch1y = getYval(ch1);
-    //println("ch1 xy is: " + ch1x + " " + ch1y);
+    //char ch1x = getXval(ch1);
+    //char ch1y = getYval(ch1);
+    ////println("ch1 xy is: " + ch1x + " " + ch1y);
     
-    char ch2x = getXval(ch2);
-    char ch2y = getYval(ch2);
-    //println("ch2 xy is: " + ch2x + " " + ch2y);
+    //char ch2x = getXval(ch2);
+    //char ch2y = getYval(ch2);
+    ////println("ch2 xy is: " + ch2x + " " + ch2y);
     
-    char ch3x = getXval(ch3);
-    char ch3y = getYval(ch3);
-    //println("ch3 xy is: " + ch3x + " " + ch3y);
-    char ch4x = getXval(ch4);
-    char ch4y = getYval(ch4);
-    //println("ch4 xy is: " + ch4x + " " + ch4y);
+    //char ch3x = getXval(ch3);
+    //char ch3y = getYval(ch3);
+    ////println("ch3 xy is: " + ch3x + " " + ch3y);
+    //char ch4x = getXval(ch4);
+    //char ch4y = getYval(ch4);
+    ////println("ch4 xy is: " + ch4x + " " + ch4y);
     
-    tilesPreOutput[0] = ch1x;
-    tilesPreOutput[1] = ',';
-    tilesPreOutput[2] = ch1y;
-    tilesPreOutput[3] = ',';
-    //println(tilesPreOutput[0] + tilesPreOutput[1]); 
+    //tilesPreOutput[0] = ch1x;
+    //tilesPreOutput[1] = ',';
+    //tilesPreOutput[2] = ch1y;
+    //tilesPreOutput[3] = ',';
+    ////println(tilesPreOutput[0] + tilesPreOutput[1]); 
     
     
-    tilesPreOutput[4] = ch2x;
-    tilesPreOutput[5] = ',';
-    tilesPreOutput[6] = ch2y;
-    tilesPreOutput[7] = ',';
+    //tilesPreOutput[4] = ch2x;
+    //tilesPreOutput[5] = ',';
+    //tilesPreOutput[6] = ch2y;
+    //tilesPreOutput[7] = ',';
     
-    ////println("ch2 is: " + tilesPreOutput[4] + " " + tilesPreOutput[6]);
+    //////println("ch2 is: " + tilesPreOutput[4] + " " + tilesPreOutput[6]);
     
-    tilesPreOutput[8] = ch3x;
-    tilesPreOutput[9] = ',';
-    tilesPreOutput[10] = ch3y;
-    tilesPreOutput[11] = ',';
+    //tilesPreOutput[8] = ch3x;
+    //tilesPreOutput[9] = ',';
+    //tilesPreOutput[10] = ch3y;
+    //tilesPreOutput[11] = ',';
     
-    tilesPreOutput[12] = ch4x;
-    tilesPreOutput[13] = ',';
-    tilesPreOutput[14] = ch4y;
-    tilesPreOutput[15] = ',';
+    //tilesPreOutput[12] = ch4x;
+    //tilesPreOutput[13] = ',';
+    //tilesPreOutput[14] = ch4y;
+    //tilesPreOutput[15] = ',';
+    String response = "";
+    for(int i = 0; i < 12; i++) {
+      //response += tileStatus[i];
+      if(tileStatus[i] == 1){
+        response += (i % 4) + 1;
+        response += ",";
+        response += (i / 4)  + 1;
+        response += ",";
+      }
+    }
     
-    tileStatusOutput = new String(tilesPreOutput);
-    println(tileStatusOutput);
+    tileStatusOutput = response;
+    //Output = new String(tilesPreOutput);
+    println(response);
     
   }
   
