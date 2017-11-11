@@ -87,6 +87,26 @@ class KinectTracker {
     // Going to rewrite the depth image to show which pixels are in threshold
     // A lot of this is redundant, but this is just for demonstration purposes
     display.loadPixels();
+    //for (int x = 0; x < kinect.width; x++) {
+    //  for (int y = 0; y < kinect.height; y++) {
+
+    //    int offset = x + y * kinect.width;
+    //    // Raw depth
+    //    int rawDepth = depth[offset];
+    //    int pix = x + y * display.width;
+    //    if (rawDepth < threshold) {
+    //      // A red color instead
+    //      display.pixels[pix] = color(150, 50, 50);
+    //      //checkRegion(x,y);
+    //    } 
+    //    else {
+    //      display.pixels[pix] = img.pixels[offset];
+    //      display.pixels[pix] = color(255,255,255);
+    //    }
+    //  }
+    //}
+    
+    
     for (int x = 0; x < kinect.width; x++) {
       for (int y = 0; y < kinect.height; y++) {
 
@@ -97,15 +117,80 @@ class KinectTracker {
         if (rawDepth < threshold) {
           // A red color instead
           display.pixels[pix] = color(150, 50, 50);
-        } else {
+          //checkRegion(x,y);
+          displayBox(x,y);
+          
+        } 
+        else {
           display.pixels[pix] = img.pixels[offset];
+          display.pixels[pix] = color(255,255,255);
         }
       }
     }
+     
+    
     display.updatePixels();
 
     // Draw the image
     image(display, 0, 0);
+  }
+
+  void displayBox(int x, int y){
+    //(1,1)
+    if((x > kinect.width*.18) && (x < kinect.width*.22) && (y < kinect.height*.66)){
+      rectMode(CENTER);
+      fill(255);
+      rect(kinect.width*.125, kinect.height*.15,50,50);
+    }
+    //(2,1)
+    if((x > kinect.width*.25) && (x < kinect.width*.5) && (y < kinect.height*.66)){
+      rectMode(CENTER);
+      fill(255);
+      rect(kinect.width*.375, kinect.height*.15,50,50);
+    }
+    //(3,1)
+    if((x > kinect.width*.5) && (x < kinect.width*.75) && (y < kinect.height*.66)){
+      rectMode(CENTER);
+      fill(255);
+      rect(kinect.width*.625, kinect.height*.15,50,50);
+    }
+    
+    //(4,1)
+    if((x > kinect.width*.75) && (x < kinect.width) && (y < kinect.height*.66)){
+      rectMode(CENTER);
+      fill(255);
+      rect(kinect.width*.875, kinect.height*.15,50,50);
+    }
+    
+    
+    //(1,2)
+    //if((x > kinect.width*.18) && (x < kinect.width*.22) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.125, kinect.height*.15,50,50);
+    //}
+    ////(1,1)
+    //if((x > kinect.width*.25) && (x < kinect.width*.5) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.375, kinect.height*.15,50,50);
+    //}
+    ////(3,1)
+    //if((x > kinect.width*.5) && (x < kinect.width*.75) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.625, kinect.height*.15,50,50);
+    //}
+    
+    ////(4,1)
+    //if((x > kinect.width*.75) && (x < kinect.width) && (y < kinect.height*.66)){
+    //  rectMode(CENTER);
+    //  fill(255);
+    //  rect(kinect.width*.875, kinect.height*.15,50,50);
+    //}
+    
+    
+    
   }
 
   int getThreshold() {
