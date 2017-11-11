@@ -1,0 +1,31 @@
+{
+  "name": "beatbox.js",
+  "version": "0.2.3",
+  "authors": [
+    "Candid Dauth <cdauth@cdauth.eu>"
+  ],
+  "description": "A step sequencer library for JavaScript that makes it easy to create JavaScript drumming machines that play patterns in an accurate way.",
+  "main": "dist/beatbox.js",
+  "ignore": [
+    "**/.*",
+    "*.iml",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "howler.js": "~1.1.28"
+  },
+  "homepage": "https://github.com/beatboxjs/beatbox.js",
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.3",
+    "commit": "23397e4e26dc84dc93810a854464dd6e47ba70b1"
+  },
+  "_source": "https://github.com/beatboxjs/beatbox.js.git",
+  "_target": "^0.2.3",
+  "_originalSource": "beatbox.js",
+  "_direct": true
+}

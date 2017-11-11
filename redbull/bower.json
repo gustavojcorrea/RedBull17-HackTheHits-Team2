@@ -1,0 +1,20 @@
+{
+  "name": "redbull",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "jaye sosa"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "beatbox.js": "^0.2.3"
+  }
+}
