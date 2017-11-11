@@ -6,14 +6,14 @@ var gridRows = 3
 
 var kinectPeople = [];
 $(document).ready(function () {
-   
+
     console.log("document ready");
     // $("#frame").html("anything");
     var canvas = $("#canvas");
 
     var grid = [];
     for (var index = 0; index < gridColumns; index++) {
-        
+
         console.log(index);
         grid.push({
             strokeStyle: 'black',
@@ -47,8 +47,8 @@ $(document).ready(function () {
     //     console.log(grid[index]);
     //}
 
-    var soundMode = 0; 
-    if(soundMode == 0){
+    var soundMode = 0;
+    if (soundMode == 0) {
         var Snd1Col1 = 'bassDrum.wav';
         var Snd2Col1 = 'bassDrumDoub.wav';
         var Snd3Col1 = 'bassDrumTriplets.wav';
@@ -61,8 +61,7 @@ $(document).ready(function () {
         var Snd1Col4 = 'quartz.wav';
         var Snd2Col4 = 'sciFi.wav';
         var Snd3Col4 = '8bit.wav';
-    }
-    else{
+    } else {
         var Snd1Col1 = 'BSound.wav';
         var Snd2Col1 = 'CSound.wav';
         var Snd3Col1 = 'CsharpSound.wav';
@@ -145,7 +144,7 @@ $(document).ready(function () {
             console.log('Finished!');
         }
     });
- 
+
     //group 4
     var synthSound1Col4 = new Howl({
         urls: [Snd1Col4],
@@ -169,6 +168,8 @@ $(document).ready(function () {
         }
     });
 
+    var highlightPos = 0
+
     function draw() {
         var canvas = $("#canvas");
         canvas.clearCanvas()
@@ -182,17 +183,25 @@ $(document).ready(function () {
             canvas.drawRect({
                 strokeStyle: 'white',
                 fillStyle: 'red',
-                y: kinectPeople[index].y * (gridWidth / gridRows) - (gridWidth / gridRows) / 2 ,
-                x: kinectPeople[index].x * (gridHeight / gridColumns) - (gridHeight / gridColumns) /2, 
+                y: kinectPeople[index].y * (gridWidth / gridRows) - (gridWidth / gridRows) / 2,
+                x: kinectPeople[index].x * (gridHeight / gridColumns) - (gridHeight / gridColumns) / 2,
                 width: 50,
                 height: 50
             });
         }
         play();
-
+        canvas.drawRect({
+            fillStyle: 'rgba(255, 0, 0, .2)',
+            x: highlightPos,
+            y: 0,
+            width: 500 / gridColumns,
+            height: 375,
+            fromCenter: false
+        });
         window.requestAnimationFrame(draw);
     }
     var counter = 0;
+
     function play() {
         if (counter == 0 * 30 || counter == 1 * 30 || counter == 2 * 30 || counter == 3 * 30) {
             console.log("Beat", counter / 30 + 1);
@@ -210,6 +219,7 @@ $(document).ready(function () {
         }
 
         if (counter % 30 == 0) {
+            highlightPos = (500 / gridColumns) * Math.round(counter / 30)
             loadData();
             findRow();
         }
@@ -225,12 +235,12 @@ $(document).ready(function () {
             console.log(beat);
             for (var i = 0; i < kinectPeople.length; i++) {
                 if (kinectPeople[i].x == beat) {
-                    playSound(beat,kinectPeople[i].y);
+                    playSound(beat, kinectPeople[i].y);
                 }
             }
         }
 
-        function playSound(beat,number) {
+        function playSound(beat, number) {
             //col 1
             if (number == 1 && beat == 1) {
                 synthSound1Col1.play();
@@ -283,26 +293,28 @@ $(document).ready(function () {
 //getting postion from kinect coordinates
 function getPosition() {
     return [{
-        x: 6,
-        y: 7
+            x: 6,
+            y: 7
     }, {
-        x: 50,
-        y: 70
+            x: 50,
+            y: 70
     }, {
-        x: 100,
-        y: 100
+            x: 100,
+            y: 100
     }, {
-        x: 200,
-        y: 200
+            x: 200,
+            y: 200
     }
     ]
 }
+
 function getPeople() {
     return kinectPeople;
 }
 var counter = 0;
-function loadData(){
-    $.get('http://localhost:3000/data' + '?id=' + counter, {}, function(res) {
+
+function loadData() {
+    $.get('http://localhost:3000/data' + '?id=' + counter, {}, function (res) {
         console.log(res);
         kinectPeople = res;
     });

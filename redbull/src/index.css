@@ -1,7 +1,31 @@
 body {
-    color: red
+    background: #1e1e1e;
+    font-family: 'Andale Mono';
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 40px;
 }
 
+#title {
+    color: #e4e4e4;
+    font-size: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+#comp {
+    font-size: 18px;
+}
+
+#peeps {
+    color: lime;
+    font-size: 12px;
+
+}
+
+#frame {}
 
 /* #box1{
     width: 50px;
