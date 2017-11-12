@@ -49,18 +49,18 @@ $(document).ready(function () {
 
     var soundMode = 0;
     if (soundMode == 0) {
-        var Snd1Col1 = 'bassDrum.wav';
+        var Snd1Col1 = 'bassDrumTriplets.wav';
         var Snd2Col1 = 'bassDrumDoub.wav';
-        var Snd3Col1 = 'bassDrumTriplets.wav';
-        var Snd1Col2 = 'hh.wav';
-        var Snd2Col2 = 'hhDoub.wav';
-        var Snd3Col2 = 'hhTrip.wav';
-        var Snd1Col3 = 'snareUpbeat.wav';
-        var Snd2Col3 = 'snare.wav';
-        var Snd3Col3 = 'snareDoub.wav';
+        var Snd3Col1 = 'BD3.wav';
+        var Snd1Col2 = 'HH1.wav';
+        var Snd2Col2 = 'hhTrip.wav';
+        var Snd3Col2 = 'HH3.wav';
+        var Snd1Col3 = 'snare1.wav';
+        var Snd2Col3 = 'snareDoub.wav';
+        var Snd3Col3 = 'snareUpbeat.wav';
         var Snd1Col4 = 'quartz.wav';
-        var Snd2Col4 = 'sciFi.wav';
-        var Snd3Col4 = '8bit.wav';
+        var Snd2Col4 = 'redBullCan.wav';
+        var Snd3Col4 = 'sciFi.wav';
     } else {
         var Snd1Col1 = 'BSound.wav';
         var Snd2Col1 = 'CSound.wav';
