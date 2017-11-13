@@ -5,6 +5,7 @@ var gridColumns = 4
 var gridRows = 3
 
 var kinectPeople = [];
+
 $(document).ready(function () {
 
     console.log("document ready");
@@ -28,24 +29,6 @@ $(document).ready(function () {
 
         console.log(grid[index]);
     }
-
-
-    // var grid = [];
-    // for (var index = 0; index < gridColumns; index++) {
-    //     console.log(index);
-    //     grid.push({
-    //         strokeStyle: 'white',
-    //         fillStyle: 'black',
-    //         y: 384,
-    //         x: index * (gridWidth / gridColumns),
-    //         width: gridWidth / gridColumns,
-    //         height: gridWidth / gridColumns,
-    //         fromCenter: false
-
-    //     });
-
-    //     console.log(grid[index]);
-    //}
 
     var soundMode = 0;
     if (soundMode == 0) {
